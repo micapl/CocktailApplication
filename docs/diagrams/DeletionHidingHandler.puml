@@ -1,0 +1,25 @@
+@startuml SequenceDeletionHiding
+autonumber
+actor "User" as User
+participant "Client (Avalonia UI)" as UI
+participant "Backend API (Node.js)" as API
+database "Local SQLite" as LocalDB
+database "Central DB (MySQL)" as DB
+
+User -> UI : Clicks "Remove" on a Cocktail
+UI -> UI : Check Cocktail.isUserCreated\nand CreatorID
+
+alt isUserCreated == true (Own Cocktail)
+    UI -> API : DELETE /api/cocktails/{id}
+    API -> DB : Delete record (if owned by user)
+    API --> UI : 200 OK
+    UI -> LocalDB : Remove locally
+    UI --> User : "Cocktail deleted"
+else isUserCreated == false (Public Cocktail)
+    UI -> API : POST /api/users/hidden-cocktails/{id}
+    API -> DB : Add to user's hidden list
+    API --> UI : 200 OK
+    UI -> LocalDB : Mark as hidden locally
+    UI --> User : "Cocktail hidden from view"
+end
+@enduml

@@ -1,0 +1,36 @@
+@startuml Update
+autonumber
+
+actor "Admin (Superuser)" as Admin
+participant "Backend API (Node.js)" as API
+database "Central DB (MySQL)" as DB
+actor "User" as User
+participant "Client (Avalonia UI)" as UI
+database "Local DB (SQLite)" as LocalDB
+
+== Admin Updates Global Database ==
+Admin -> API : POST/PUT /api/admin/cocktails\n[JWT: Role=ADMIN]
+API -> API : Validate Admin Role
+API -> DB : Insert/Update Cocktail\n(Set new updatedAt timestamp)
+DB --> API : Success
+API --> Admin : 200 OK (Record Updated)
+
+== Client Synchronization ==
+User -> UI : Open App / Login
+UI -> LocalDB : Retrieve lastSyncTimestamp (T1)
+LocalDB --> UI : T1
+
+UI -> API : GET /api/sync?since=T1\n[JWT: Role=USER]
+API -> DB : SELECT Cocktails, Ingredients\nWHERE updatedAt > T1
+DB --> API : Return updated/new records
+API --> UI : 200 OK (JSON with delta updates)
+
+UI -> LocalDB : Apply updates (Upsert records)
+UI -> LocalDB : Update lastSyncTimestamp (T2)
+
+opt If ingredients or cocktails changed
+    UI -> UI : Trigger My Bar Calculation Engine
+end
+
+UI --> User : Dashboard ready with latest public data
+@enduml

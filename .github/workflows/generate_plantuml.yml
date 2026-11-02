@@ -1,0 +1,27 @@
+name: Generate PlantUML Diagrams
+
+# Only runs with changes in .puml files
+on:
+  push:
+    paths:
+      - '**.puml'
+      - 'docs/diagrams/**'
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Render PlantUML Diagrams to SVG
+        uses: cloudbees/plantuml-github-action@master
+        with:
+          args: '-tsvg docs/diagrams/*.puml'
+
+      - name: Commit and Push rendered SVG
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: auto-generate SVG diagrams [skip ci]"
+          file_pattern: 'docs/diagrams/*.svg'

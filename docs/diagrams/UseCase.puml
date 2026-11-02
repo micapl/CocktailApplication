@@ -1,0 +1,41 @@
+@startuml Usage
+left to right direction
+actor "User" as User
+actor "Admin (Superuser)" as Admin
+
+rectangle "Cocktail Application" {
+  usecase "Manage Global DB (Cocktails & Ingredients)" as UC_Admin
+  
+  usecase "Register & Login (JWT Auth)" as UC1
+  usecase "Browse & Search Cocktails" as UC2
+  usecase "Create & Edit Custom Cocktails" as UC3
+  usecase "Delete Own Cocktails" as UC3_Del
+  usecase "Hide Public Cocktails" as UC3_Hide
+  usecase "Manage 'My Bar' Ingredients" as UC4
+  usecase "Calculate Available Cocktails" as UC5
+  usecase "Scale Servings" as UC6
+  usecase "Manage Favorites & Tags" as UC7
+  usecase "Log Drinking Session" as UC8
+  usecase "Tag Friends in Session" as UC9
+  usecase "View Statistics" as UC10
+  usecase "Get Recommendations" as UC11
+}
+
+Admin --> UC_Admin
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC3_Del
+User --> UC3_Hide
+User --> UC4
+User --> UC5
+User --> UC6
+User --> UC7
+User --> UC8
+User --> UC10
+User --> UC11
+
+UC5 .> UC4 : <<includes>>
+UC9 .> UC8 : <<extends>>
+@enduml

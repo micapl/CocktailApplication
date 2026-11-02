@@ -1,0 +1,68 @@
+@startuml Class
+enum Role {
+  USER
+  ADMIN
+}
+
+class User {
+  + String id
+  + String username
+  + String passwordHash
+  + Role role
+  + addFriend(User friend)
+  + hidePublicCocktail(Cocktail cocktail)
+}
+
+class Cocktail {
+  + String id
+  + String name
+  + String image
+  + String primarySpirit
+  + String glassType
+  + String instructions
+  + boolean isUserCreated
+  + Date updatedAt
+  + scaleServings(int count)
+}
+
+class Ingredient {
+  + String id
+  + String name
+  + Date updatedAt
+}
+
+class CocktailIngredient {
+  + String measure
+}
+
+class Tag {
+  + String id
+  + String name
+}
+
+class DrinkingSession {
+  + String id
+  + Date date
+  + String location
+}
+
+class UserHistoryEntry {
+  + String id
+  + int rating
+  + String notes
+}
+
+User "1" -- "many" Cocktail : creates local >
+User "1" -- "many" Cocktail : hides public >
+User "many" -- "many" User : friends >
+User "1" -- "many" Ingredient : has in My Bar >
+User "1" -- "many" Cocktail : favorites >
+
+Cocktail "1" *-- "many" CocktailIngredient
+Ingredient "1" -- "many" CocktailIngredient
+Cocktail "many" -- "many" Tag : described by >
+
+DrinkingSession "1" *-- "many" UserHistoryEntry : contains >
+User "1" -- "many" UserHistoryEntry : logs >
+DrinkingSession "many" -- "1" Cocktail : features >
+@enduml
