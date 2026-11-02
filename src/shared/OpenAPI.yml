@@ -1,0 +1,82 @@
+openapi: '3.0.3' #temporary file mostly to standardize api url endpoints
+info:
+  title: API Title
+  version: '1.0'
+servers:
+  - url: http://api.cocktailapp.nya.pub:3000/
+paths: 
+  /test:
+    get:
+      responses:
+        '200':
+          description: OK
+  /auth/signin:
+    post:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /auth/login:
+    post:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /auth/token:
+    post:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /cocktail/sync:
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /cocktail/reviews:
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /social/profile:
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /social/friends:
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /social/sessions:
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /admin/usrmgmt: #user management
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /admin/ctmgmt: #cocktail management
+    get:
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
