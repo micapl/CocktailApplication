@@ -9,20 +9,44 @@
         x:DataType="vm:MainViewModel"
         Title="CockTail">
     <Grid Background="{DynamicResource PrimaryBGGradient}" ColumnDefinitions="200, *">
-          <Border Padding="2" Background="{DynamicResource PrimaryBG}" CornerRadius="3" >
+          <Border Padding="6" Background="{DynamicResource PrimaryBG}" CornerRadius="3" >
                 <Grid Background="#350955">
-                    <Grid Margin="3" RowDefinitions="*, Auto"> 
-                        <StackPanel Spacing="7" Margin="3">
-                            <Image Source="/Assets/CockTailLogo.png"/>
-<Button Content="Home" Background="Black" Foreground="FloralWhite" BorderBrush="FloralWhite" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" CornerRadius="15"></Button>
-    <Button Content="Bar" Background="Black" Foreground="FloralWhite" BorderBrush="FloralWhite" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" CornerRadius="15"></Button>
-        <Button Content="Social" Background="Black" Foreground="FloralWhite" BorderBrush="FloralWhite" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" CornerRadius="15"></Button>
-            <Button Content="Settings" Background="Black" Foreground="FloralWhite" BorderBrush="FloralWhite" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" CornerRadius="15"></Button>            
-                    
-            </StackPanel>
-            <Button Grid.Row="1" Content="Quit" Background="Black" Foreground="FloralWhite" BorderBrush="FloralWhite" Width="97" HorizontalContentAlignment="Center" HorizontalAlignment="Left" CornerRadius="15" Command="{ReflectionBinding Close, RelativeSource={RelativeSource AncestorType=Window}}"></Button>
+                    <Grid Margin="4" RowDefinitions="*, Auto"> 
+                        <DockPanel Grid.Column="0"  Margin="4" Background="Black">
+        <Button DockPanel.Dock="Bottom" Content="Quit" 
+            Command="{Binding QuitCommand}" 
+            Background="Black" Foreground="FloralWhite" BorderBrush="FloralWhite" BorderThickness="1" 
+            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="2" />  
+    <StackPanel DockPanel.Dock="Top" Spacing="5">
+                        <Image Source="/Assets/CockTailLogo.png"/>
+    
+    <Button Content="Search" 
+            Command="{Binding NavigateSearchCommand}" 
+            Background="Black" Foreground="FloralWhite" BorderBrush="FloralWhite" BorderThickness="1" 
+            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="2"/>
+            
+    <Button Content="Home" 
+            Command="{Binding NavigateHomeCommand}" 
+            Background="Black" Foreground="FloralWhite" BorderBrush="FloralWhite" BorderThickness="1" 
+            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="2"/>
+            
+    <Button Content="Social" 
+            Command="{Binding NavigateSocialCommand}" 
+            Background="Black" Foreground="FloralWhite" BorderBrush="FloralWhite" BorderThickness="1" 
+            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="2"/>
+            
+    <Button Content="Settings" 
+            Command="{Binding NavigateSettingsCommand}" 
+            Background="Black" Foreground="FloralWhite" BorderBrush="FloralWhite" BorderThickness="1" 
+            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="2"/>
+         </StackPanel>
+</DockPanel>    
                     </Grid>
                 </Grid>
             </Border>
+            <ContentControl Grid.Column="1" 
+                        Content="{Binding CurrentView}" 
+                        HorizontalContentAlignment="Stretch" 
+                        VerticalContentAlignment="Stretch" />
     </Grid>  
 </Window>

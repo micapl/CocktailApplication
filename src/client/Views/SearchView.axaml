@@ -1,0 +1,11 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="client.Views.SearchView">
+    <Grid Background="#1E052B" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TextBlock Text="Search" 
+                   Foreground="White" 
+                   FontSize="24" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"/>
+    </Grid>
+</UserControl>
