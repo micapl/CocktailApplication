@@ -27,6 +27,9 @@ private void NavigateSocial() => CurrentView = new SocialViewModel();
 private void NavigateSettings() => CurrentView = new SettingsViewModel();
 
 [RelayCommand]
+private void NavigateLogin() => CurrentView = new LoginViewModel();
+
+[RelayCommand]
 private void Quit()
 {
     if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)

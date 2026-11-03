@@ -15,6 +15,10 @@
     </Application.Styles>
     <Application.Resources>
         <SolidColorBrush x:Key="PrimaryBG">#500085</SolidColorBrush>
+        <SolidColorBrush x:Key="PrimaryBG2">#EE611296</SolidColorBrush>
+        <SolidColorBrush x:Key="PrimaryFG">#C4B4CF</SolidColorBrush>
+        <SolidColorBrush x:Key="PrimaryBGHover">#3B1655</SolidColorBrush>
+        <SolidColorBrush x:Key="PrimaryFGHover">#7E6A8C</SolidColorBrush>
         <LinearGradientBrush x:Key="PrimaryBGGradient" StartPoint="0%, 0%" EndPoint="100%, 0%">
             <GradientStop Offset="0" Color="Black"></GradientStop> 
             <GradientStop Offset="1" Color="#500085"></GradientStop> 
