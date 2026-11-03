@@ -12,49 +12,49 @@ paths:
           description: OK
   /auth/signin:
     post:
-      description: ''
+      description: 'user sign in'
       parameters: []
       responses:
         '200':
           description: OK
   /auth/login:
     post:
-      description: ''
+      description: 'user log in'
       parameters: []
       responses:
         '200':
           description: OK
   /auth/token:
     post:
-      description: ''
+      description: 'authorisation token'
       parameters: []
       responses:
         '200':
           description: OK
   /cocktail/sync:
     get:
-      description: ''
+      description: 'synchronisation of cocktail recipes with server'
       parameters: []
       responses:
         '200':
           description: OK
   /cocktail/reviews:
     get:
-      description: ''
+      description: 'reviews of a cocktail recipe'
       parameters: []
       responses:
         '200':
           description: OK
   /social/profile:
     get:
-      description: ''
+      description: 'user profile'
       parameters: []
       responses:
         '200':
           description: OK
   /social/friends:
     get:
-      description: ''
+      description: 'list of friends' ##not sure here
       parameters: []
       responses:
         '200':
