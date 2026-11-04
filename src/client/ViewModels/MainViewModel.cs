@@ -7,6 +7,7 @@ namespace client.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
+
     [ObservableProperty]
     private object? _currentView;
 
@@ -14,6 +15,33 @@ public partial class MainViewModel : ViewModelBase
     {
         CurrentView = null;
     }
+
+[ObservableProperty]
+private double _sidebarWidth = 200;
+
+public bool IsExpanded => SidebarWidth == 200;
+public string MenuButtonContent => IsExpanded ? "Menu" : "";
+public string SearchButtonContent => IsExpanded ? "Search" : "";
+public string HomeButtonContent => IsExpanded ? "Home" : "";
+public string SocialButtonContent => IsExpanded ? "Social" : "";
+public string SettingsButtonContent => IsExpanded ? "Settings" : "";
+public string QuitButtonContent => IsExpanded ? "Quit" : "";
+public string LoginButtonContent => IsExpanded ? "Login" : "";
+
+[RelayCommand]
+private void ToggleMenu()
+{
+    SidebarWidth = SidebarWidth == 200 ? 80 : 200;
+
+    OnPropertyChanged(nameof(IsExpanded));
+    OnPropertyChanged(nameof(SearchButtonContent));
+    OnPropertyChanged(nameof(HomeButtonContent));
+    OnPropertyChanged(nameof(SocialButtonContent));
+    OnPropertyChanged(nameof(SettingsButtonContent));
+    OnPropertyChanged(nameof(QuitButtonContent));
+    OnPropertyChanged(nameof(LoginButtonContent));
+}
+
 [RelayCommand]
 private void NavigateHome() => CurrentView = new HomeViewModel();
 
@@ -37,4 +65,5 @@ private void Quit()
         desktop.Shutdown();
     }
 }
+
 }
