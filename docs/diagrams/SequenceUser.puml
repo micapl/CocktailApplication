@@ -1,0 +1,40 @@
+@startuml
+autonumber
+actor "User" as User
+participant "UI (Avalonia)" as UI
+participant "Image Cache" as ImgCache
+participant "Local DB" as LocalDB
+participant "API (Node.js)" as API
+database "Central DB (MySQL)" as DB
+participant "Image CDN" as CDN
+
+User -> UI : Enter login & password
+UI -> API : POST /auth/login
+API -> DB : Verify credentials
+API --> UI : Return JWT Token
+
+== Two-Way State Synchronization ==
+UI -> LocalDB : Get lastSyncTimestamp (T1) & Pending Local Changes
+UI -> API : POST /api/sync\nPayload: { since: T1, localChanges: [...] }
+
+API -> DB : 1. Apply user's local changes (Push)\n2. Fetch User Profile State (MyBar, Custom Drinks)\n3. Fetch Global Delta (since T1)
+API --> UI : Return JSON (Global Updates + User Profile)
+UI -> LocalDB : Upsert Cache & Update lastSyncTimestamp
+
+UI -> UI : Initialize My Bar Calculation Engine
+UI --> User : Display Main Dashboard (Cocktails list)
+
+== Asynchronous Image Loading ==
+User -> UI : Scrolls cocktail list
+UI -> LocalDB : Read Cocktail data
+LocalDB --> UI : Returns { name: "Mojito", imageUrl: "https://cdn.example.com/mojito.jpg" }
+UI -> ImgCache : Request image (imageUrl)
+
+alt Image not in local file cache
+    ImgCache -> CDN : GET /mojito.jpg
+    CDN --> ImgCache : Binary Image Data
+    ImgCache -> ImgCache : Save to disk/memory
+end
+
+ImgCache --> UI : Display Image
+@enduml

@@ -1,0 +1,47 @@
+@startuml
+package "Client (Avalonia UI)" {
+  [User Interface] as UI
+  [My Bar Calculation Engine] as ClientCalc
+  [Two-Way Sync Manager] as SyncMgr
+  [Image Loader & Cache] as ImageCache
+  [Local DB Cache (SQLite)] as LocalDB
+}
+
+package "Backend (Node.js)" {
+  [API Gateway & Auth (JWT)] as Gateway
+  [Sync & State Service] as SyncSvc
+  [Media / Image Server] as MediaSvc
+  [Custom Cocktail API] as CocktailAPI
+  [User & Social Service] as UserSvc
+  [History & Stats Service] as HistorySvc
+}
+
+database "MySQL Database" {
+  [Central Relational DB\n(SSOT)] as CentralDB
+}
+
+cloud "File Storage" {
+  [Image CDN / S3 Bucket] as CDN
+}
+
+UI --> Gateway : HTTPS / REST
+UI --> ClientCalc : triggers computation
+UI --> ImageCache : request images via URL
+ImageCache --> MediaSvc : fetch binary
+MediaSvc --> CDN : retrieve file
+ClientCalc --> LocalDB : reads cached API & custom drinks
+
+UI --> SyncMgr : on login / data change
+SyncMgr <--> LocalDB : reads/writes state
+SyncMgr <--> Gateway : Two-way sync (Push/Pull)
+
+Gateway --> SyncSvc
+Gateway --> CocktailAPI
+Gateway --> UserSvc
+Gateway --> HistorySvc
+
+SyncSvc --> CentralDB
+CocktailAPI --> CentralDB
+UserSvc --> CentralDB
+HistorySvc --> CentralDB
+@enduml
