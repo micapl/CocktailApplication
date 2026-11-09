@@ -3,6 +3,8 @@ name: Generate PlantUML Diagrams
 # Only runs with changes in .puml files
 on:
   push:
+    branches:
+      - '**' #runs on any branch
     paths:
       - '**.puml'
       - 'docs/diagrams/**'

@@ -1,0 +1,81 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:client.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="600"
+        Width="1200" Height="600"
+        x:Class="client.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="CockTail"
+        Icon="/Assets/CockTail-icon.ico">
+    <Grid Background="{DynamicResource PrimaryBGGradient}" ColumnDefinitions="Auto, *">
+          <Border Padding="6" Background="{DynamicResource PrimaryBG}" CornerRadius="5" >
+                <Grid Background="#350955">
+                    <Grid Margin="4" RowDefinitions="*, Auto"> 
+                        <DockPanel Grid.Column="0" Width="{Binding SidebarWidth}" Margin="3" Background="Black">
+        <Grid DockPanel.Dock="Bottom" ColumnDefinitions="*, *" Margin="4">
+                
+        <Button Grid.Column="0" Command="{Binding QuitCommand}" Margin="0,0,2,0">
+        <StackPanel Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center">
+            <TextBlock FontFamily="avares://client/Assets/Phosphor.ttf#Phosphor" 
+                       Text="&#xE7E6;" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding QuitButtonContent}"  VerticalAlignment="Center"/>
+        </StackPanel>
+    </Button>
+                
+    <Button Grid.Column="1" Command="{Binding NavigateLoginCommand}" Margin="2,0,0,0">
+    <StackPanel Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center">
+            <TextBlock FontFamily="avares://client/Assets/Phosphor.ttf#Phosphor" 
+                       Text="&#xE428;" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding LoginButtonContent}" VerticalAlignment="Center"/>
+        </StackPanel>
+    </Button>
+    
+</Grid>  
+    <StackPanel DockPanel.Dock="Top" Spacing="8">
+                        
+    <Image Source="/Assets/CockTailLogo.png"/>
+    <Button Content="{Binding MenuButtonContent}"
+            Command="{Binding ToggleMenuCommand}"  />
+
+    <Button Command="{Binding NavigateSearchCommand}">
+    <StackPanel Orientation="Horizontal" Spacing="4">
+        <TextBlock FontFamily="avares://client/Assets/Phosphor.ttf#Phosphor" 
+                   Text="&#xE30C;" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding SearchButtonContent}" VerticalAlignment="Center"/>
+    </StackPanel>
+    </Button>
+            
+    <Button Command="{Binding NavigateHomeCommand}">
+    <StackPanel Orientation="Horizontal" Spacing="4">
+        <TextBlock FontFamily="avares://client/Assets/Phosphor.ttf#Phosphor" 
+                   Text="&#xE2C2;" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding HomeButtonContent}" VerticalAlignment="Center"/>
+    </StackPanel>
+    </Button>
+            
+    <Button Command="{Binding NavigateSocialCommand}">
+    <StackPanel Orientation="Horizontal" Spacing="4">
+        <TextBlock FontFamily="avares://client/Assets/Phosphor.ttf#Phosphor" 
+                   Text="&#xE4D6;" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding SocialButtonContent}"  VerticalAlignment="Center"/>
+    </StackPanel>
+    </Button>
+            
+    <Button Command="{Binding NavigateSettingsCommand}">
+    <StackPanel Orientation="Horizontal" Spacing="4">
+        <TextBlock FontFamily="avares://client/Assets/Phosphor.ttf#Phosphor" 
+                   Text="&#xE272;" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding SettingsButtonContent}" VerticalAlignment="Center"/>
+    </StackPanel>
+    </Button>
+</StackPanel>
+
+</DockPanel>    
+                    </Grid>
+                </Grid>
+            </Border>
+            <ContentControl Grid.Column="1" Content="{Binding CurrentView}" HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch" />
+    </Grid>
+</Window>

@@ -1,4 +1,4 @@
-@startuml Usage
+@startuml UseCase
 left to right direction
 actor "User" as User
 actor "Admin (Superuser)" as Admin
