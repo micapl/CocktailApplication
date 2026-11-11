@@ -1,11 +1,17 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="client.Views.SocialView">
-    <Grid Background="#1E052B" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <TextBlock Text="Social" 
-                   Foreground="White" 
-                   FontSize="24" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center"/>
-    </Grid>
+             xmlns:vm="using:client.ViewModels"
+             x:Class="client.Views.SocialView"
+             x:DataType="vm:SocialViewModel">
+
+    <DockPanel Margin="10">
+  
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+            <Button Content="Friends" Command="{Binding NavigateFriendsCommand}"/>
+            <Button Content="History" Command="{Binding NavigateHistoryCommand}"/>
+            <Button Content="Statistics" Command="{Binding NavigateStatisticsCommand}"/>
+        </StackPanel>
+
+        <ContentControl Content="{Binding CurrentPage}" />
+    </DockPanel>
 </UserControl>
