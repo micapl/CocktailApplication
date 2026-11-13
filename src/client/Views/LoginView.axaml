@@ -1,11 +1,52 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="client.Views.LoginView">
-    <Grid Background="#1E052B" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <TextBlock Text="Login" 
-                   Foreground="White" 
-                   FontSize="24" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center"/>
+             xmlns:vm="using:client.ViewModels"
+             x:Class="client.Views.LoginView"
+             x:DataType="vm:LoginViewModel">
+
+    <Grid Background="{DynamicResource PrimaryBGGradient}">
+        <StackPanel Width="320" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Spacing="15">
+            
+            <TextBlock Text="Welcome Back!" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       Foreground="White" 
+                       HorizontalAlignment="Center" 
+                       Margin="0,0,0,10"/>
+
+            <StackPanel Spacing="5">
+                <TextBlock Text="E-mail" Foreground="#CCCCCC" FontSize="12"/>
+                <TextBox Text="{Binding Email}" 
+                         PlaceholderText="example@email.com" 
+                         Height="35"/>
+            </StackPanel>
+
+            <StackPanel Spacing="5">
+                <TextBlock Text="Hasło" Foreground="#CCCCCC" FontSize="12"/>
+                <TextBox Text="{Binding Password}" 
+                         PasswordChar="●" 
+                         PlaceholderText="••••••••" 
+                         Height="35"/>
+            </StackPanel>
+
+            <CheckBox Content="Remember Me" 
+                      IsChecked="{Binding RememberMe}" 
+                      Foreground="White" 
+                      Margin="0,5,0,5"/>
+
+
+            <Button Content="Login" 
+                    Command="{Binding LoginCommand}" 
+                    HorizontalAlignment="Stretch" 
+                    HorizontalContentAlignment="Center"
+                    Background="{DynamicResource PrimaryBG}" 
+                    Foreground="White" 
+                    Height="35" 
+                    CornerRadius="4"/>
+            
+        </StackPanel>
     </Grid>
 </UserControl>

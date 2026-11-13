@@ -24,18 +24,15 @@
         <Setter Property="Foreground" Value="FloralWhite"/>
         <Setter Property="BorderBrush" Value="FloralWhite"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Style.Resources>
+            <SolidColorBrush x:Key="TextControlBorderBrushFocused">White</SolidColorBrush>
+            <SolidColorBrush x:Key="TextControlBackgroundFocused">#1E052B</SolidColorBrush>
+        </Style.Resources>
     </Style>
 
     <Style Selector="TextBox:focus">
         <Setter Property="BorderBrush" Value="White"/>
         <Setter Property="Background" Value="#1E052B"/>
-    </Style>
-
-    <Style Selector="TextBox">
-        <Style.Resources>
-            <SolidColorBrush x:Key="TextControlBorderBrushFocused">White</SolidColorBrush>
-            <SolidColorBrush x:Key="TextControlBackgroundFocused">#1E052B</SolidColorBrush>
-        </Style.Resources>
     </Style>
 
     <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
@@ -45,6 +42,18 @@
     <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
         <Setter Property="Background" Value="#8F16A2"/>
         <Setter Property="Foreground" Value="FloralWhite"/>
+    </Style>
+
+    <Style Selector="CheckBox">
+        <Style.Resources>
+            <Color x:Key="SystemAccentColor">#FF8D37AF</Color>
+            <SolidColorBrush x:Key="ThemeAccentBrush" Color="#FF8D37AF"/>
+            <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="#FFCD51FF"/>
+            <SolidColorBrush x:Key="CheckBoxCheckBackgroundPointerOver" Color="#FFAA41D3"/>
+            <SolidColorBrush x:Key="CheckBoxBorderBrushPointerOver" Color="#FFAA41D3"/>
+            <SolidColorBrush x:Key="CheckBoxCheckBackgroundPressed" Color="#79159D"/>  
+            <SolidColorBrush x:Key="CheckBoxCheckForegroundCheckedPointOver" Color="#79159D"/> 
+        </Style.Resources>
     </Style>
 
   <Style Selector="Button /template/ ContentPresenter">
@@ -80,5 +89,4 @@
     <Setter Property="FontSize" Value="22"/>
     <Setter Property="Padding" Value="8"/>
   </Style>
-
 </Styles>

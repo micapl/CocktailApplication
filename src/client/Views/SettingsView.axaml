@@ -1,11 +1,15 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="client.Views.SettingsView">
-    <Grid Background="#1E052B" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <TextBlock Text="Settings" 
-                   Foreground="White" 
-                   FontSize="24" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center"/>
-    </Grid>
+             xmlns:vm="using:client.ViewModels"
+             x:Class="client.Views.SettingsView"
+             x:DataType="vm:SettingsViewModel">
+
+    <DockPanel Margin="10">
+  
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+            <Button Content="Language" Command="{Binding NavigateLanguageCommand}"/>
+                   </StackPanel>
+
+        <ContentControl Content="{Binding CurrentPage}" />
+    </DockPanel>
 </UserControl>
